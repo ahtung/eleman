@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
   end
 
   def create
+    setting_params[:file].content_type = MIME::Types.type_for(setting_params[:file].original_filename).first.content_type
     @setting = Setting.new(setting_params)
     @setting.organization = @organization
 
