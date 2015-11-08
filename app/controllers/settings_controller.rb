@@ -1,35 +1,25 @@
 class SettingsController < ApplicationController
   before_action :set_organization, only: [:show, :create, :destroy]
   before_action :set_setting, only: [:destroy]
+
   def show
-    @setting = Setting.new
+    @setting = @organization.setting.build
   end
 
   def create
-    setting_params[:file].content_type = MIME::Types.type_for(setting_params[:file].original_filename).first.content_type
-    @setting = Setting.new(setting_params)
-    @setting.organization = @organization
-
-    respond_to do |format|
-      if @setting.save
-        format.html { redirect_to settings_show_organization_path(@organization)}
-        format.js
-      else
-        format.html { render :show }
-        format.json { render json: @setting.errors, status: :unprocessable_entity }
-      end
+    @setting = @organization.setting.build(setting_params)
+    if @setting.save
+      redirect_to settings_show_organization_path(@organization)
+    else
+      render :show
     end
   end
 
   def destroy
-    respond_to do |format|
-      if @setting.destroy
-        format.html { redirect_to settings_show_organization_path(@organization)}
-        format.js
-      else
-        format.html { render :show }
-        format.json { render json: @setting.errors, status: :unprocessable_entity }
-      end
+    if @setting.destroy
+      redirect_to settings_show_organization_path(@organization)
+    else
+      render :show
     end
   end
 

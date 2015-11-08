@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   resources :organizations, only: [:show, :index] do
     member do
       get 'sync'
-      get 'settings/show'
-      post 'settings/create'
-      delete 'settings/destroy'
+      resource :setting, only: [:show, :create, :destroy]
     end
   end
 end
