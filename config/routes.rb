@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :organizations, only: [:show, :index] do
     member do
       get 'sync'
+      get 'settings/show'
     end
   end
 end
