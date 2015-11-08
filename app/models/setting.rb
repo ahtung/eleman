@@ -9,4 +9,19 @@ class Setting < ActiveRecord::Base
     Paperclip.io_adapters.for(file).read
   end
 
+  def commit_rate
+    yaml['settings']['commits']
+  end
+
+  def addition_rate
+    yaml['settings']['additions']
+  end
+
+  def deletion_rate
+    yaml['settings']['deletions']
+  end
+
+  def yaml
+    YAML::load(contents).to_hash
+  end
 end
