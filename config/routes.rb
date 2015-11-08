@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'sync'
       get 'settings/show'
+      post 'settings/create'
     end
   end
 end
