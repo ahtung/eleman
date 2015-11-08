@@ -4,4 +4,9 @@ class Setting < ActiveRecord::Base
   validates_attachment :file, presence: true,
     content_type: { content_type: ['text/yaml', 'text/x-yaml'] },
     size: { in: 0..10.megabytes }
+
+  def contents
+    Paperclip.io_adapters.for(file).read
+  end
+
 end
