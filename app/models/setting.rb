@@ -10,15 +10,15 @@ class Setting < ActiveRecord::Base
   end
 
   def commit_rate
-    yaml['settings']['commits']
+    yaml['settings']['commits'].to_f
   end
 
   def addition_rate
-    yaml['settings']['additions']
+    yaml['settings']['additions'].to_f
   end
 
   def deletion_rate
-    yaml['settings']['deletions']
+    yaml['settings']['deletions'].to_f
   end
 
   def yaml
