@@ -55,7 +55,11 @@ class OrganizationSyncer
 
           prog += 1
           progress = (prog.to_f / total_prog.to_f * 100.0).to_i
-          max_member = yearly[year][month].max_by{ |k,v| v*(organization.setting.commit_rate || 1)  }
+          if organization.setting.present?
+            max_member = yearly[year][month].max_by{ |k,v| v*(organization.setting.commit_rate || 1)  }
+          else
+            max_member = yearly[year][month].max_by{ |k,v| v }
+          end
           best_index = contributor_names.index(max_member.first)
           new_message = { pos: best_index, prog: progress, month: month, member: max_member, org_name: organization.name }
           WebsocketRails[:sync].trigger('syncer', new_message)

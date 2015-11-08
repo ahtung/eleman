@@ -45,7 +45,11 @@ class Organization < ActiveRecord::Base
     return Array.new(12) if commits.blank?
     return Array.new(12) if commits[year].nil?
     commits[year].map do |month, monthly_scores|
-      best = monthly_scores.max_by { |k,v| v*(setting.commit_rate || 1) }
+      if setting.present?
+        best = monthly_scores.max_by { |k,v| v*(setting.commit_rate || 1) }
+      else
+        best = monthly_scores.max_by { |k,v| v }
+      end
       return Array.new(12) if best.nil?
       best_index = users.map(&:login).index(best.first)
       best.nil? ? nil : [best, best_index]
