@@ -3,7 +3,7 @@ class Organization < ActiveRecord::Base
   has_many :repos, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-
+  has_one :setting
   serialize :commits, Hash
 
   before_create :set_state
