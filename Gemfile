@@ -27,6 +27,7 @@ gem 'faye-websocket', '0.10.0'
 gem 'sidekiq-unique-jobs'
 gem 'rack-google-analytics'
 gem 'pundit'
+gem "paperclip", "~> 4.3"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bxslider-4'
