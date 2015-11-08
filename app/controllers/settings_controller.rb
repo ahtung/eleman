@@ -22,10 +22,14 @@ class SettingsController < ApplicationController
   end
 
   def destroy
-    @setting.destroy
     respond_to do |format|
-      format.html { redirect_to settings_show_organization_path(@organization)}
-      format.json { render json: @setting.errors, status: :unprocessable_entity }
+      if @setting.destroy
+        format.html { redirect_to settings_show_organization_path(@organization)}
+        format.js
+      else
+        format.html { render :show }
+        format.json { render json: @setting.errors, status: :unprocessable_entity }
+      end
     end
   end
 
