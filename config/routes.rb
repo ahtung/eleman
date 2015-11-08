@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'sync'
       get 'settings/show'
       post 'settings/create'
+      delete 'settings/destroy'
     end
   end
 end
