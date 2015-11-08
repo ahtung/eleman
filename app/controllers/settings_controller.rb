@@ -3,11 +3,11 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:destroy]
 
   def show
-    @setting = @organization.setting.build
+    @setting = @organization.build_setting
   end
 
   def create
-    @setting = @organization.setting.build(setting_params)
+    @setting = @organization.build_setting(setting_params)
     if @setting.save
       redirect_to settings_show_organization_path(@organization)
     else
