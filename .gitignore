@@ -14,3 +14,4 @@
 /coverage
 /Procfile.dev
 dump.rdb
+/public/system
