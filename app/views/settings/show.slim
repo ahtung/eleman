@@ -10,7 +10,7 @@
         = 'File: '
         = @organization.setting.file.original_filename
         | &nbsp;
-        = link_to 'Destroy', settings_destroy_organization_path, data: {:confirm => 'Are you sure?'}, :method => :delete
+        = link_to 'Destroy', setting_path, data: {:confirm => 'Are you sure?'}, :method => :delete
       textarea#yaml disabled='true' = @organization.setting.contents
 - else
   .row

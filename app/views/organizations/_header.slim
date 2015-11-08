@@ -5,7 +5,7 @@
       = link_to "<", @organization.previous(current_user), class: 'button tiny'
   .small-8.columns
     h1.text-center
-      small = link_to 'O', settings_show_organization_path()
+      small = link_to 'O', setting_path
       = link_to @organization.name, "https://github.com/#{@organization.name}", target: '_blank'
       |  (
       span data-tooltip="true" aria-haspopup="true" class="has-tip tip-right" data-options="show_on:medium" title="Click to see past years"
