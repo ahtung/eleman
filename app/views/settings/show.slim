@@ -11,7 +11,7 @@
         = @organization.setting.file.original_filename
         |
         = link_to 'Destroy', settings_destroy_organization_path, data: {:confirm => 'Are you sure?'}, :method => :delete
-      = @organization.setting.contents
+      textarea#yaml disabled='true' = @organization.setting.contents
 - else
   .row
     .small-12.column.text-center
